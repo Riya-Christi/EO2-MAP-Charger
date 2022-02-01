@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="./style.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    
+    <title>MAP</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <!--Header-->
+        <div class="header pt-3 pb-3 pl-3">
+            <h2>AC Charger</h2>
+          </div>
+    <div class="wrapper">
+        <!--Sidebar-->
+        <div id="sidebar">
+            <nav class="navbar-dark">
+              <ul class="navbar-nav">
+                <li id="rfid">
+                  <a class="nav-link px-3 active" href="./rfid.html" onclick="return socketConnection();">
+                    <span>RFID Configuration</span>
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider bg-light my-0" /></li>
+                <li id="network">
+                  <a class="nav-link px-3 active" href="./network.html" onclick="return socketConnection();">
+                    <span>Network Configuration</span>
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider bg-light my-0" /></li>
+                <li id="chargingpoint">
+                  <a class="nav-link px-3 active" href="./chargingpoint.html" onclick="return socketConnection();">
+                    <span>Charging point</span>
+                  </a>
+                </li>
+                
+                <li><hr class="dropdown-divider bg-light my-0" /></li>
+                <li>
+                <li id="connector">
+                  <a class="nav-link px-3 active" href="./chargconnector.html" onclick="return socketConnection();">
+                    <span>Charge Connectors</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+        </div>
+
+        <!--charging point-->
+        <div class="content" id="chargingpoint">
+            <h2 class="mb-5 ml-3">Charging Point</h2>
+            <div class="row m-0">
+                <form class="form" action="/chargingpoint">
+                    <div class="form-group">
+                      <label for="modelname">ChargePoint Modelname</label>
+                      <input type="text" class="form-control" id="cp_modelname" placeholder="En0.00">
+                    </div>
+                    <div class="form-group">
+                      <label for="_srno.">ChargePoint Serial No.</label>
+                      <input type="text" class="form-control" id="cp_srnumber" placeholder="Enter _srno.">
+                    </div>
+                    <div class="form-group">
+                        <label for="cp_vendor">ChargePoint Vendor</label>
+                        <input type="text" class="form-control" id="cp_vendor" placeholder="Enter _vendor">
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-6">
+                          <label for="cp_lat">Latitide</label>
+                        <input type="number" class="form-control" id="cp_lat" placeholder="1111111">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="cp_long">Longitude</label>
+                          <input type="number" class="form-control" id="cp_long" placeholder="2222222">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="cp_fwver">Firmware Version</label>
+                        <input type="text" class="form-control" id="cp_fwver" placeholder="v1.0">
+                      </div>
+                      <div class="form-group">
+                        <label for="cp_url">URL</label>
+                        <input type="text" class="form-control" id="cp_url" placeholder="Enter URL">
+                      </div>
+                      <div class="form-group">
+                        <label for="max-connector">Max Connector</label>
+                        <input type="number" class="form-control" id="cp_connector" placeholder="">
+                      </div>
+                      <div class="form-group">
+                        <label for="cp_rfid">RFID</label>
+                        <input type="text" class="form-control" id="cp_rfid" placeholder="">
+                      </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>                        
+        
+    </div>
+    </div>
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+</body>
+</html>
+
+<script type="text/javascript">
+
+  const url = 'ws://localhost:3000'
+  var ws = new WebSocket(url);
+ 
+  function socketConnection() {
+    if (ws.readyState == WebSocket.OPEN) {
+        ws.close();
+    }
+  }
+
+  ws.onopen = function () {
+   console.log("Web socket charging point is connected") 
+  };
+
+  ws.onmessage = function (event){
+  console.log("on message", JSON.parse(event.data));
+  eventData = JSON.parse(event.data);
+  var cp_modelname = document.getElementById('cp_modelname');
+  var cp_srnumber = document.getElementById('cp_srnumber');
+  var cp_vendor = document.getElementById('cp_vendor');
+  var cp_lat = document.getElementById('cp_lat');
+  var cp_long = document.getElementById('cp_long');
+  var cp_fwver = document.getElementById('cp_fwver');
+  var cp_url = document.getElementById('cp_url');
+  var cp_connector = document.getElementById('cp_connector');
+  var cp_rfid = document.getElementById('cp_rfid');
+  cp_modelname.value = eventData.cp_modelname;
+  cp_srnumber.value = eventData.cp_srnumber;
+  cp_vendor.value = eventData.cp_vendor;
+  cp_lat.value = eventData.cp_lat;
+  cp_long.value = eventData.cp_long;
+  cp_fwver.value = eventData.cp_fwver;
+  cp_url.value = eventData.cp_url;
+  cp_connector.value = eventData.cp_connector;   
+  cp_rfid.value = eventData.cp_rfid;   
+}
+
+  document.forms[0].onsubmit = (e) =>{
+    var cp_modelname = document.getElementById('cp_modelname').value;
+    var cp_srnumber = document.getElementById('cp_srnumber').value;
+    var cp_vendor = document.getElementById('cp_vendor').value;
+    var cp_lat = document.getElementById('cp_lat').value;
+    var cp_long = document.getElementById('cp_long').value;
+    var cp_fwver = document.getElementById('cp_fwver').value;
+    var cp_url = document.getElementById('cp_url').value;
+    var cp_connector = document.getElementById('cp_connector').value;
+    var cp_rfid = document.getElementById('cp_rfid').value;
+    var f = { 
+      cp_modelname: cp_modelname, 
+      cp_srnumber: cp_srnumber, 
+      cp_vendor: cp_vendor, 
+      cp_lat: cp_lat, 
+      cp_long: cp_long,
+      cp_fwver: cp_fwver,
+      cp_url: cp_url,
+      cp_connector: cp_connector,
+      cp_rfid: cp_rfid
+    };
+    console.log("send", JSON.stringify(f));
+    ws.send(JSON.stringify(f))
+    e.preventDefault();
+    }
+
+ 
+</script>

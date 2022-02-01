@@ -1,0 +1,154 @@
+.container-fluid{  
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: fixed;
+    overflow: auto;
+    padding: 0px !important;
+    margin: 0px !important;
+ }
+.header{
+    background-color: rgb(248, 128, 59);
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+}
+.content h2{
+  border-bottom: 2px solid black;
+}
+.content{
+  margin-top: 20px;
+}
+.form{
+  width: 80%;
+  margin-left: 50px;
+}
+@media screen and (max-width: 576px) {
+  .container-fluid{
+      margin-bottom: 20px;
+  }
+} 
+@media screen and (min-width: 1024px) {
+  .container-fluid{
+      padding-right: 60px;
+  }
+}
+@media screen and (max-width: 380px) {
+  .form{
+      margin-left: 30px;
+  }
+}
+
+
+/* wrapper */
+.wrapper{
+  position: absolute;
+  width: 100%;
+  height: auto;
+  -webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box;
+ box-sizing: border-box;
+}
+@media screen and (min-width: 600px) {
+  .wrapper {
+    height: 100%;
+  }
+  #sidebar { 
+     width: 247px;
+     float: left;
+     height: 400px;
+     background-color: rgb(226, 225, 225);
+     overflow: auto;
+    }
+  #content {
+    margin-left: 250px;
+    border-left: 2px solid black;
+    padding-left: 20px;
+    padding-top: 40px;
+ }
+}
+
+/* sidebar style*/
+#sidebar{
+    background-color: rgb(44, 131, 202);
+    overflow-y: none ;
+  }
+#sidebar a:hover, a:focus{
+  background-color:rgb(39, 41, 168);
+}
+@media (min-width: 600px) {
+    #sidebar{
+      width: 247px
+    }
+  }
+
+/* network style */
+#network .card-header{
+  background-color: darkgray;
+}
+#network input{
+  width: 50%;
+}
+#network select{
+  width: 50%;
+}
+@media screen and (max-width: 576px) {
+  #network select{
+      width: 80% !important;
+  }
+  #network input{
+      width: 80% !important;
+  }
+  #network .inputCenter{
+      left: 10%;
+  }
+} 
+@media screen and (min-width:600px) and (max-width:1203px){
+  #network input{
+      width: 80% !important;
+  }
+  #network select{
+      width: 80% !important;
+  }
+  #network .inputCenter{
+      left: 10%;
+  }
+}
+
+/* chargconnector styles */
+.row{
+  margin-left: 20px;
+}
+
+#chargconnector input{
+  height: 33px;
+}
+#chargconnector label{
+  margin-bottom: 3px;
+}
+#chargconnector .form-group{
+  margin: 10px;
+}
+#chargconnector .card-header{
+  background-color: darkgray;
+}
+#chargconnector .card{
+  margin-top: 30px;
+}
+@media screen and (min-width: 1200px) {
+  #chargconnector .card{
+      margin-right: 40px;
+   } 
+} 
+@media screen and (max-width: 767px) {
+  #chargconnector .card{
+      margin-top: 20px;
+   }
+   #chargconnector .row{
+      margin-left: 0px;
+  } 
+}
+@media screen and (max-width: 600px) {
+  #chargconnector h2{
+      margin-bottom: 10px !important;
+  }
+}

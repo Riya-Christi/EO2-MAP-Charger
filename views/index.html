@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="./style.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    
+    <title>MAP</title>
+    <script>
+      let url = "./rfid";
+      window.onload = function(){
+        window.location.replace(url);
+      }
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <!--Header-->
+        <div class="header pt-3 pb-3 pl-3">
+            <h2>AC Charger</h2>
+          </div>
+<div class="wrapper">
+        <!--Sidebar-->
+        <div id="sidebar">
+            <nav class="navbar-dark">
+              <ul class="navbar-nav">
+                <li id="rfid">
+                  <a class="nav-link px-3 active" href="./rfid.html">
+                    <span>RFID Configuration</span>
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider bg-light my-0" /></li>
+                <li id="network">
+                  <a class="nav-link px-3 active" href="./network.html">
+                    <span>Network Configuration</span>
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider bg-light my-0" /></li>
+                <li id="chargingpoint">
+                  <a class="nav-link px-3 active" href="./chargingpoint.html">
+                    <span>Charging point</span>
+                  </a>
+                </li>
+                
+                <li><hr class="dropdown-divider bg-light my-0" /></li>
+                <li>
+                <li id="connector">
+                  <a class="nav-link px-3 active" href="./chargconnector.html">
+                    <span>Charge Connectors</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+        </div>
+
+          <!--RFID-->
+          <div class="content">
+          <h2 class="mb-5 ml-3">RFID Configuration</h2>
+          <div class="row m-0">
+            <form class="form">
+          <div class="form-group">
+            <label for="rfidTag1">RFID Tag 1</label>
+            <input type="text" class="form-control" id="rfidTag1" placeholder="" formControlName="tag1">
+          </div>
+          <div class="form-group">
+            <label for="rfidTag2">RFID Tag 2</label>
+            <input type="text" class="form-control" id="rfidTag2" placeholder="" formControlName="tag2">
+          </div>
+          <div class="form-group">
+            <label for="rfidTag3">RFID Tag 3</label>
+            <input type="text" class="form-control" id="rfidTag3" placeholder="" formControlName="tag3">
+          </div>
+          <div class="form-group">
+            <label for="rfidTag4">RFID Tag 4</label>
+            <input type="text" class="form-control" id="rfidTag4" placeholder="" formControlName="tag4">
+          </div>
+          <div class="form-group">
+            <label for="rfidTag5">RFID Tag 5</label>
+            <input type="text" class="form-control" id="rfidTag5" placeholder="" formControlName="tag5">
+          </div>
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+          </div>   
+        </form>
+    </div>
+  </div>
+</div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+</body>
+</html>
+

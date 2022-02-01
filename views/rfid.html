@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="./style.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    
+    <title>MAP</title>
+</head>
+<body>
+    <div class="container-fluid">
+      <!--Header-->
+      <div class="header pt-3 pb-3 pl-3">
+          <h2>AC Charger</h2>
+      </div>
+      <div class="wrapper">
+        <!--Sidebar-->
+        <div id="sidebar">
+          <nav class="navbar-dark">
+            <ul class="navbar-nav">
+              <li id="rfid">
+                <a class="nav-link px-3 active" href="./rfid.html" onclick="return socketConnection();">
+                  <span>RFID Configuration</span>
+                </a>
+              </li>
+              <li><hr class="dropdown-divider bg-light my-0" /></li>
+              <li id="network">
+                <a class="nav-link px-3 active" href="./network.html" onclick="return socketConnection();">
+                  <span>Network Configuration</span>
+                </a>
+              </li>
+              <li><hr class="dropdown-divider bg-light my-0" /></li>
+              <li id="chargingpoint">
+                <a class="nav-link px-3 active" href="./chargingpoint.html" onclick="return socketConnection();">
+                  <span>Charging point</span>
+                </a>
+              </li>
+              
+              <li><hr class="dropdown-divider bg-light my-0" /></li>
+              <li>
+              <li id="connector">
+                <a class="nav-link px-3 active" href="./chargconnector.html" onclick="return socketConnection();">
+                  <span>Charge Connectors</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <!--RFID-->
+        <div class="content">
+          <h2 class="mb-5 ml-3">RFID Configuration</h2>
+          <div class="row m-0">
+            <form id="form" class="form" action="/rfid">
+              <div class="form-group">
+                <label for="rfidTag1">RFID Tag 1</label>
+                <input type="text" class="form-control" id="tag1">
+              </div>
+              <div class="form-group">
+                <label for="rfidTag2">RFID Tag 2</label>
+                <input type="text" id="tag2" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="rfidTag3">RFID Tag 3</label>
+                <input type="text" id="tag3" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="rfidTag4">RFID Tag 4</label>
+                <input type="text" id="tag4" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="rfidTag5">RFID Tag 5</label>
+                <input type="text" id="tag5" class="form-control">
+              </div>
+              <div class="d-flex justify-content-center">
+                <button type="submit" id= "submit" value="submit" class="btn btn-primary mt-2">Submit</button>
+              </div>   
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+      const url = 'ws://localhost:3000'
+      var ws = new WebSocket(url);
+     
+  function socketConnection() {
+        if (ws.readyState == WebSocket.OPEN) {
+            ws.close();
+        }
+    }
+
+    ws.onopen = function () {
+       console.log("Web socket rfid is connected")
+       
+    };
+
+    ws.onmessage = function (event){
+      console.log("on message", JSON.parse(event.data));
+      eventData = JSON.parse(event.data);
+      var t1 = document.getElementById('tag1');
+      var t2 = document.getElementById('tag2');
+      var t3 = document.getElementById('tag3');
+      var t4 = document.getElementById('tag4');
+      var t5 = document.getElementById('tag5');
+      t1.value = eventData.tag1;
+      t2.value = eventData.tag2;
+      t3.value = eventData.tag3;
+      t4.value = eventData.tag4;
+      t5.value = eventData.tag5;   
+    }
+    
+    document.forms[0].onsubmit = (e) =>{
+          var t1 = document.getElementById('tag1').value;
+          var t2 = document.getElementById('tag2').value;
+          var t3 = document.getElementById('tag3').value;
+          var t4 = document.getElementById('tag4').value;
+          var t5 = document.getElementById('tag5').value;
+          var f = { tag1: t1, tag2: t2, tag3: t3, tag4: t4, tag5: t5};
+          console.log("send", JSON.stringify(f));
+          ws.send(JSON.stringify(f))
+          e.preventDefault();
+        }
+</script>

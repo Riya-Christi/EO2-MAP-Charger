@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="./style.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    
+    <title>MAP</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <!--Header-->
+        <div class="header pt-3 pb-3 pl-3">
+            <h2>AC Charger</h2>
+          </div>
+    <div class="wrapper">
+        <!--Sidebar-->
+        <div id="sidebar">
+          <nav class="navbar-dark">
+            <ul class="navbar-nav">
+              <li id="rfid">
+                <a class="nav-link px-3 active" href="./rfid.html" onclick="return socketConnection();">
+                  <span>RFID Configuration</span>
+                </a>
+              </li>
+              <li><hr class="dropdown-divider bg-light my-0" /></li>
+              <li id="network">
+                <a class="nav-link px-3 active" href="./network.html" onclick="return socketConnection();">
+                  <span>Network Configuration</span>
+                </a>
+              </li>
+              <li><hr class="dropdown-divider bg-light my-0" /></li>
+              <li id="chargingpoint">
+                <a class="nav-link px-3 active" href="./chargingpoint.html" onclick="return socketConnection();">
+                  <span>Charging point</span>
+                </a>
+              </li>
+              
+              <li><hr class="dropdown-divider bg-light my-0" /></li>
+              <li>
+              <li id="connector">
+                <a class="nav-link px-3 active" href="./chargconnector.html" onclick="return socketConnection();">
+                  <span>Charge Connectors</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+      </div>
+
+        <!--chargconnector-->
+        <div class="content" id="chargconnector">
+          <h2 class="mb-2 ml-3">Charge Connectors</h2>
+      <div class="row m-0">
+      <form class="form" class="form" action="/chargconnector">
+        <div class="row">
+         <div class="col-lg-4">
+          <div class="card">
+            <h6 class="card-header">Connector 1</h6>
+            <div class="form-group">
+              <label for="status">Status</label>
+              <input type="text" class="form-control" placeholder="NO" id="C1_status"> 
+            </div>
+            <div class="form-group">
+              <label for="type">Type</label>
+              <input type="text" class="form-control" placeholder="2" id="C1_type">
+            </div>
+            <div class="form-group">
+                <label for="chargerID">Charger ID</label>
+                <input type="text" class="form-control" placeholder="1" id="C1_id">
+            </div>
+            <div class="form-group">
+                <label for="interfaceType">Interface Type</label>
+                <input type="text" class="form-control" placeholder="1" id="C1_interface">
+            </div>
+          </div>
+          </div>
+          <div class="col-lg-4">
+          <div class="card">
+            <h6 class="card-header">Connector 2</h6>
+            <div class="form-group">
+              <label for="status">Status</label>
+              <input type="text" class="form-control" placeholder="NO" id="C2_status"> 
+            </div>
+            <div class="form-group">
+              <label for="type">Type</label>
+              <input type="text" class="form-control" placeholder="2" id="C2_type">
+            </div>
+            <div class="form-group">
+                <label for="chargerID">Charger ID</label>
+                <input type="text" class="form-control" placeholder="1" id="C2_id">
+            </div>
+            <div class="form-group">
+                <label for="interfaceType">Interface Type</label>
+                <input type="text" class="form-control" placeholder="1" id="C2_interface">
+            </div>
+          </div>
+          </div>
+          <div class="col-lg-4">
+          <div class="card">
+            <h6 class="card-header">Connector 3</h6>
+            <div class="form-group">
+              <label for="status">Status</label>
+              <input type="text" class="form-control" placeholder="NO" id="C3_status"> 
+            </div>
+            <div class="form-group">
+              <label for="type">Type</label>
+              <input type="text" class="form-control" placeholder="2" id="C3_type">
+            </div>
+            <div class="form-group">
+                <label for="chargerID">Charger ID</label>
+                <input type="text" class="form-control" placeholder="1" id="C3_id">
+            </div>
+            <div class="form-group">
+                <label for="interfaceType">Interface Type</label>
+                <input type="text" class="form-control" placeholder="1" id="C3_interface">
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+           <div class="card">
+             <h6 class="card-header">Connector 4</h6>
+             <div class="form-group">
+               <label for="status">Status</label>
+               <input type="text" class="form-control" placeholder="NO" id="C4_status"> 
+             </div>
+             <div class="form-group">
+               <label for="type">Type</label>
+               <input type="text" class="form-control" placeholder="2" id="C4_type">
+             </div>
+             <div class="form-group">
+                 <label for="chargerID">Charger ID</label>
+                 <input type="text" class="form-control" placeholder="1" id="C4_id">
+             </div>
+             <div class="form-group">
+                 <label for="interfaceType">Interface Type</label>
+                 <input type="text" class="form-control" placeholder="1" id="C4_interface">
+             </div>
+           </div>
+           </div>
+           <div class="col-lg-4">
+           <div class="card">
+             <h6 class="card-header">Connector 5</h6>
+             <div class="form-group">
+               <label for="status">Status</label>
+               <input type="text" class="form-control" placeholder="NO" id="C5_status"> 
+             </div>
+             <div class="form-group">
+               <label for="type">Type</label>
+               <input type="text" class="form-control" placeholder="2" id="C5_type">
+             </div>
+             <div class="form-group">
+                 <label for="chargerID">Charger ID</label>
+                 <input type="text" class="form-control" placeholder="1" id="C5_id">
+             </div>
+             <div class="form-group">
+                 <label for="interfaceType">Interface Type</label>
+                 <input type="text" class="form-control" placeholder="1" id="C5_interface">
+             </div>
+           </div>
+           </div>
+           <div class="col-lg-4">
+           <div class="card">
+             <h6 class="card-header">Connector 6</h6>
+             <div class="form-group">
+               <label for="status">Status</label>
+               <input type="text" class="form-control" placeholder="NO" id="C6_status"> 
+             </div>
+             <div class="form-group">
+               <label for="type">Type</label>
+               <input type="text" class="form-control" placeholder="2" id="C6_type">
+             </div>
+             <div class="form-group">
+                 <label for="chargerID">Charger ID</label>
+                 <input type="text" class="form-control" placeholder="1" id="C6_id">
+             </div>
+             <div class="form-group">
+                 <label for="interfaceType">Interface Type</label>
+                 <input type="text" class="form-control" placeholder="1" id="C6_interface">
+             </div>
+           </div>
+           </div>
+         </div>
+
+         <div class="row">
+          <div class="col-lg-4">
+           <div class="card">
+             <h6 class="card-header">Connector 7</h6>
+             <div class="form-group">
+               <label for="status">Status</label>
+               <input type="text" class="form-control" placeholder="NO" id="C7_status"> 
+             </div>
+             <div class="form-group">
+               <label for="type">Type</label>
+               <input type="text" class="form-control" placeholder="2" id="C7_type">
+             </div>
+             <div class="form-group">
+                 <label for="chargerID">Charger ID</label>
+                 <input type="text" class="form-control" placeholder="1" id="C7_id">
+             </div>
+             <div class="form-group">
+                 <label for="interfaceType">Interface Type</label>
+                 <input type="text" class="form-control" placeholder="1" id="C7_interface">
+             </div>
+           </div>
+           </div>
+           <div class="col-lg-4">
+           <div class="card">
+             <h6 class="card-header">Connector 8</h6>
+             <div class="form-group">
+               <label for="status">Status</label>
+               <input type="text" class="form-control" placeholder="NO" id="C8_status"> 
+             </div>
+             <div class="form-group">
+               <label for="type">Type</label>
+               <input type="text" class="form-control" placeholder="2" id="C8_type">
+             </div>
+             <div class="form-group">
+                 <label for="chargerID">Charger ID</label>
+                 <input type="text" class="form-control" placeholder="1" id="C8_id">
+             </div>
+             <div class="form-group">
+                 <label for="interfaceType">Interface Type</label>
+                 <input type="text" class="form-control" placeholder="1" id="C8_interface">
+             </div>
+           </div>
+           </div>
+           <div class="col-lg-4">
+           <div class="card">
+             <h6 class="card-header">Connector 9</h6>
+             <div class="form-group">
+               <label for="status">Status</label>
+               <input type="text" class="form-control" placeholder="NO" id="C9_status"> 
+             </div>
+             <div class="form-group">
+               <label for="type">Type</label>
+               <input type="text" class="form-control" placeholder="2" id="C9_type">
+             </div>
+             <div class="form-group">
+                 <label for="chargerID">Charger ID</label>
+                 <input type="text" class="form-control" placeholder="1" id="C9_id">
+             </div>
+             <div class="form-group">
+                 <label for="interfaceType">Interface Type</label>
+                 <input type="text" class="form-control" placeholder="1" id="C9_interface">
+             </div>
+           </div>
+           </div>
+         </div>
+        <div class="text-center mb-5 mt-3"><button type="submit" class="btn btn-primary">Submit</button></div>
+        </form>
+
+    </div>
+        </div>                        
+        
+    </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    const url = 'ws://localhost:3000'
+    var ws = new WebSocket(url);
+ 
+    function socketConnection() {
+      if (ws.readyState == WebSocket.OPEN) {
+          ws.close();
+      }
+    }
+
+    ws.onopen = function () {
+      console.log("Web socket chargeconnectors is connected")
+    
+    };
+
+    ws.onmessage = function (event){
+    console.log("on message", JSON.parse(event.data));
+    eventData = JSON.parse(event.data);
+
+    var C1_status = document.getElementById('C1_status');
+    var C1_type = document.getElementById('C1_type');
+    var C1_id = document.getElementById('C1_id');
+    var C1_interface = document.getElementById('C1_interface');
+    
+    var C2_status = document.getElementById('C2_status');
+    var C2_type = document.getElementById('C2_type');
+    var C2_id = document.getElementById('C2_id');
+    var C2_interface = document.getElementById('C2_interface');
+
+    var C3_status = document.getElementById('C3_status');
+    var C3_type = document.getElementById('C3_type');
+    var C3_id = document.getElementById('C3_id');
+    var C3_interface = document.getElementById('C3_interface');
+
+    var C4_status = document.getElementById('C4_status');
+    var C4_type = document.getElementById('C4_type');
+    var C4_id = document.getElementById('C4_id');
+    var C4_interface = document.getElementById('C4_interface');
+
+    var C5_status = document.getElementById('C5_status');
+    var C5_type = document.getElementById('C5_type');
+    var C5_id = document.getElementById('C5_id');
+    var C5_interface = document.getElementById('C5_interface');
+
+    var C6_status = document.getElementById('C6_status');
+    var C6_type = document.getElementById('C6_type');
+    var C6_id = document.getElementById('C6_id');
+    var C6_interface = document.getElementById('C6_interface');
+
+    var C7_status = document.getElementById('C7_status');
+    var C7_type = document.getElementById('C7_type');
+    var C7_id = document.getElementById('C7_id');
+    var C7_interface = document.getElementById('C7_interface');
+
+    var C8_status = document.getElementById('C8_status');
+    var C8_type = document.getElementById('C8_type');
+    var C8_id = document.getElementById('C8_id');
+    var C8_interface = document.getElementById('C8_interface');
+
+    var C9_status = document.getElementById('C9_status');
+    var C9_type = document.getElementById('C9_type');
+    var C9_id = document.getElementById('C9_id');
+    var C9_interface = document.getElementById('C9_interface');
+
+    C1_status.value = eventData.C1_status;
+    C1_type.value = eventData.C1_type;
+    C1_id.value = eventData.C1_id;
+    C1_interface.value = eventData.C1_interface;
+
+    C2_status.value = eventData.C2_status;
+    C2_type.value = eventData.C2_type;
+    C2_id.value = eventData.C2_id;
+    C2_interface.value = eventData.C2_interface;
+
+    C3_status.value = eventData.C3_status;
+    C3_type.value = eventData.C3_type;
+    C3_id.value = eventData.C3_id;
+    C3_interface.value = eventData.C3_interface;
+
+    C4_status.value = eventData.C4_status;
+    C4_type.value = eventData.C4_type;
+    C4_id.value = eventData.C4_id;
+    C4_interface.value = eventData.C4_interface;
+
+    C5_status.value = eventData.C5_status;
+    C5_type.value = eventData.C5_type;
+    C5_id.value = eventData.C1_id;
+    C5_interface.value = eventData.C5_interface;
+
+    C6_status.value = eventData.C6_status;
+    C6_type.value = eventData.C6_type;
+    C6_id.value = eventData.C6_id;
+    C6_interface.value = eventData.C6_interface;
+
+    C7_status.value = eventData.C7_status;
+    C7_type.value = eventData.C7_type;
+    C7_id.value = eventData.C7_id;
+    C7_interface.value = eventData.C7_interface;
+
+    C8_status.value = eventData.C8_status;
+    C8_type.value = eventData.C8_type;
+    C8_id.value = eventData.C8_id;
+    C8_interface.value = eventData.C8_interface;
+
+    C9_status.value = eventData.C9_status;
+    C9_type.value = eventData.C9_type;
+    C9_id.value = eventData.C9_id;
+    C9_interface.value = eventData.C9_interface;
+  }
+
+  document.forms[0].onsubmit = (e) =>{
+        
+    var C1_status = document.getElementById('C1_status').value;
+    var C1_type = document.getElementById('C1_type').value;
+    var C1_id = document.getElementById('C1_id').value;
+    var C1_interface = document.getElementById('C1_interface').value;
+    
+    var C2_status = document.getElementById('C2_status').value;
+    var C2_type = document.getElementById('C2_type').value;
+    var C2_id = document.getElementById('C2_id').value;
+    var C2_interface = document.getElementById('C2_interface').value;
+
+    var C3_status = document.getElementById('C3_status').value;
+    var C3_type = document.getElementById('C3_type').value;
+    var C3_id = document.getElementById('C3_id').value;
+    var C3_interface = document.getElementById('C3_interface').value;
+
+    var C4_status = document.getElementById('C4_status').value;
+    var C4_type = document.getElementById('C4_type').value;
+    var C4_id = document.getElementById('C4_id').value;
+    var C4_interface = document.getElementById('C4_interface').value;
+
+    var C5_status = document.getElementById('C5_status').value;
+    var C5_type = document.getElementById('C5_type').value;
+    var C5_id = document.getElementById('C5_id').value;
+    var C5_interface = document.getElementById('C5_interface').value;
+
+    var C6_status = document.getElementById('C6_status').value;
+    var C6_type = document.getElementById('C6_type').value;
+    var C6_id = document.getElementById('C6_id').value;
+    var C6_interface = document.getElementById('C6_interface').value;
+
+    var C7_status = document.getElementById('C7_status').value;
+    var C7_type = document.getElementById('C7_type').value;
+    var C7_id = document.getElementById('C7_id').value;
+    var C7_interface = document.getElementById('C7_interface').value;
+
+    var C8_status = document.getElementById('C8_status').value;
+    var C8_type = document.getElementById('C8_type').value;
+    var C8_id = document.getElementById('C8_id');
+    var C8_interface = document.getElementById('C8_interface').value;
+
+    var C9_status = document.getElementById('C9_status').value;
+    var C9_type = document.getElementById('C9_type').value;
+    var C9_id = document.getElementById('C9_id').value;
+    var C9_interface = document.getElementById('C9_interface').value;
+
+    var f = { 
+      C1_status: C1_status,
+      C1_type: C1_type,
+      C1_id: C1_id,
+      C1_interface: C1_interface,
+      C2_status: C2_status,
+      C2_type: C2_type,
+      C2_id: C2_id,
+      C2_interface: C2_interface,
+      C3_status: C3_status,
+      C3_type: C3_type,
+      C3_id: C3_id,
+      C3_interface: C3_interface,
+      C4_status: C4_status,
+      C4_type: C4_type,
+      C4_id: C4_id,
+      C4_interface: C4_interface,
+      C5_status: C5_status,
+      C5_type: C5_type,
+      C5_id: C5_id,
+      C5_interface: C5_interface,
+      C6_status: C6_status,
+      C6_type: C6_type,
+      C6_id: C6_id,
+      C6_interface: C6_interface,
+      C7_status: C7_status,
+      C7_type: C7_type,
+      C7_id: C7_id,
+      C7_interface: C7_interface,
+      C8_status: C8_status,
+      C8_type: C8_type,
+      C8_id: C8_id,
+      C8_interface: C8_interface,
+      C9_status: C9_status,
+      C9_type: C9_type,
+      C9_id: C9_id,
+      C9_interface: C9_interface
+    };
+    console.log("send", JSON.stringify(f));
+     ws.send(JSON.stringify(f))
+     e.preventDefault();
+      }
+
+</script>
